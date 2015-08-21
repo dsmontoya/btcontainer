@@ -17,10 +17,12 @@ Jeweler::Tasks.new do |gem|
   gem.name = "btcontainer"
   gem.homepage = "http://github.com/dsmontoya/btcontainer"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = "Nothing yet"
+  gem.description = "Container that allows you Trade with many Exchanges and currencies"
   gem.email = "dsmontoyam@gmail.com"
   gem.authors = ["Daniel Montoya"]
+  gem.files.include 'lib/btcontainer/clients/mexbt_client.rb'
+  gem.files.include 'lib/btcontainer/client.rb'
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
