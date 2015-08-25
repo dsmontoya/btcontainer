@@ -1,5 +1,6 @@
 require 'mexbt'
 
+Dir["#{File.dirname(__FILE__)}/btcontainer/**.rb"].each { |f| require(f) }
 Dir["#{File.dirname(__FILE__)}/btcontainer/**/*.rb"].each { |f| require(f) }
 
 module BTContainer

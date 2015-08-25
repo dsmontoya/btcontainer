@@ -29,15 +29,19 @@ module BTContainer
       end
 
       def currencies
-        [:usd, :btc, :ltc, :cny, :mxn]
+        [:usd, :btc, :ltc, :cny, :mxn, :sgd]
+      end
+
+      def currency_pairs
+        [:btcmxn, :btcusd]
       end
 
       def interface
         @interface ||= Mexbt::Account.new(public_key: @options[:public_key], private_key: @options[:private_key], user_id: @options[:user_id], sandbox: @options[:sandbox] || false)
       end
 
-      def order_book currency: :btcmxn
-        order_book = Mexbt.order_book(currency_pair: currency)
+      def order_book currency_pair: :btcusd
+        order_book = Mexbt.order_book(currency_pair: currency_pair)
         hash = {}
         [:bids, :asks].each do |type|
           arr = []
@@ -50,8 +54,17 @@ module BTContainer
         hash.to_ostruct
       end
 
-      def ticker options={}
-        Mexbt.ticker options
+      def open_orders
+        open_orders = interface.orders[:openOrdersInfo]
+
+      end
+
+      def trades currency_pair: :btcusd
+        trades = interface.trades(currency_pair: currency_pair)[:trades]
+      end
+
+      def ticker currency_pair: :btcusd
+        Mexbt.ticker(currency_pair: currency_pair).to_ostruct
       end
 
       def trade side, options={}
